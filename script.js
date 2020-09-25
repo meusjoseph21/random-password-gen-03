@@ -1,30 +1,19 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
-
-
-generateBtn.addEventListener("click", writePassword);
-
-
-
-//1st- declare your 4 variables
+//declare your 4 variables
 var charNumber = ["0","1","2","3","4","5","6","7","8","9","10"];
 var charUpper = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
 var charLower = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
 var charSpecial = ["~","!","@","#","$","%","^","&","*","(",")","-","_","+","="];
 
-
+//variables for confirm statements
 var askCharLength;
 var askNumber;
 var askUpper;
 var askLower;
 var askSpecial;
 
-
-
-
-// 3rd- create your function to generate the password options.
-// in this function should be your prompt asking how many characters with parameters for the length, and all your confirm statements.
 
 function PassOpt() {
 
@@ -87,16 +76,18 @@ function PassOpt() {
   function getRandom(arr) {
     var randomIndex = Math.floor(Math.random() * arr.length);
     var result = arr[randomIndex];
+    console.log("function works");
     return result;
   }
 
-  //Generate password function will 
 
-  function generatePassword() {
-    var options = PassOpt();
-    var result = [];
-    var possibleChar = [];
-    var finalChar = [];
+
+
+  function generatePassword() { //creates pass
+    var options = PassOpt(); // pull from questions asked "on-click"
+    var result = []; console.log(result);
+    var possibleChar = []; 
+    var finalChar = []; 
   
     if (options.askNumber) {
       possibleChar = possibleChar.concat(charNumber);
@@ -120,15 +111,16 @@ function PassOpt() {
 
     
   
-  for (var i=0; i < options.askCharLength; i++) {
+    for (var i=0; i < options.askCharLength; i++) {
       result.push(getRandom(possibleChar));
+    }
+  
+    for (var i=0; i< finalChar.length; i++) {
+      result[i] = finalChar[i]
+    }
+    return result.join("");
   }
   
-  for (var i=0; i< finalChar.length; i++) {
-      result[i] = finalChar[i]
-  }
-  return result.join("");
-  }
   
 
 // Write password to the #password input
@@ -141,5 +133,9 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+
+
+// Assignment Code
+var generateBtn = document.querySelector("#generate");
 
 
