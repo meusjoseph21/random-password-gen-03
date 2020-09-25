@@ -15,21 +15,6 @@ var generateBtn = document.querySelector("#generate");
 generateBtn.addEventListener("click", writePassword);
 
 
-//ALL GENERATE RANDOM FROM MY ARRAYS
-// var randNumb = Math.floor(Math.random() * passCriteria.charNumber.length);
-// var randUpper = Math.floor(Math.random() * passCriteria.charUpper.length);
-// var randLower = Math.floor(Math.random() * passCriteria.charLower.length);
-// var randSpecial = Math.floor(Math.random() * passCriteria.charSpecial.length);
-
-// console.log(passCriteria.charNumber[randNumb]);
-// console.log(passCriteria.charUpper[randUpper]);
-// console.log(passCriteria.charLower[randLower]);
-// console.log(passCriteria.charSpecial[randSpecial]);
-
-
-
-//3. after all prompts are answered the password will generate in the box. 
-
 
 //1st- declare your 4 variables
 var charNumber = ["0","1","2","3","4","5","6","7","8","9","10"];
@@ -89,6 +74,7 @@ function PassOpt() {
 
     while (askNumber === false && askUpper === false && askLower === false && askSpecial === false)
   }
+  // this object is confirming true/false, storing answers check console
 
   var pwOptions = {
     askCharLength : askCharLength,
@@ -97,15 +83,20 @@ function PassOpt() {
     askLower : askLower,
     askSpecial : askSpecial,
   }
-
+  
+  console.log(pwOptions);
 
   return pwOptions;
 }
+  //Rndomizing function
+
   function getRandom(arr) {
     var randomIndex = Math.floor(Math.random() * arr.length);
     var result = arr[randomIndex];
     return result;
   }
+
+  //Generate password function will confirm true/false with if statements, 
 
   function generatePassword() {
     var options = PassOpt();
@@ -117,18 +108,23 @@ function PassOpt() {
       possibleChar = possibleChar.concat(charNumber);
       finalChar.push(getRandom(charNumber));
     }
+    
     if (options.askUpper) {
       possibleChar = possibleChar.concat(charUpper);
       finalChar.push(getRandom(charUpper));
     }
-    if (options.askLower) {
+
+        if (options.askLower) {
       possibleChar = possibleChar.concat(charLower);
       finalChar.push(getRandom(charLower));
     }
-    if (options.askSpecial) {
-      possibleChar = possibleChar.concat(charNumber);
+
+        if (options.askSpecial) {
+      possibleChar = possibleChar.concat(charSpecial);
       finalChar.push(getRandom(charSpecial));
     }
+
+    
   
   for (var i=0; i < options.askCharLength; i++) {
       result.push(getRandom(possibleChar));
@@ -139,6 +135,7 @@ function PassOpt() {
   }
   return result.join("");
   }
+  
 
 // Write password to the #password input
 function writePassword() {
